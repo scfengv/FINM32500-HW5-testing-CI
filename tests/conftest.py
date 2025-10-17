@@ -1,3 +1,4 @@
+# tests/conftest.py
 import numpy as np, pandas as pd, pytest
 from backtester.strategy import VolatilityBreakoutStrategy
 from backtester.broker import Broker
