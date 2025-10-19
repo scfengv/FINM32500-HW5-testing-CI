@@ -1,4 +1,7 @@
 import pandas as pd
+import pytest
+from unittest.mock import MagicMock
+from .strategy import VolatilityBreakoutStrategy
 
 class Backtester:
     def __init__(self, strategy, broker, qty: int = 1):

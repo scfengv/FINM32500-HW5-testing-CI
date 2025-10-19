@@ -28,3 +28,21 @@ def test_engine_logs_broker_failure(prices, broker):
     broker.market_order = MagicMock(side_effect=RuntimeError('broker failure'))
     with pytest.raises(RuntimeError, match='broker failure'):
         Backtester(fake_strategy, broker).run(prices)
+
+def test_engine_executes_sell(prices, broker):
+    fake_strategy = MagicMock()
+    sigs = prices * 0
+    sigs.iloc[5] = -1
+    fake_strategy.signals.return_value = sigs
+    broker.position = 1
+    broker.cash = 900
+    equity = Backtester(fake_strategy, broker).run(prices)
+    assert broker.position == 0
+    assert broker.cash == pytest.approx(900 + float(prices.iloc[6]))
+    assert equity == pytest.approx(broker.cash)
+    
+def test_engine_signal_length_mismatch(prices, broker):
+    fake_strategy = MagicMock()
+    fake_strategy.signals.return_value = pd.Series([1, 0])
+    with pytest.raises(ValueError, match="signals must align with prices"):
+        Backtester(fake_strategy, broker).run(prices)

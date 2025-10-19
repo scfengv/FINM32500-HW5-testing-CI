@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 class VolatilityBreakoutStrategy:
     def __init__(self, lookback: int = 20):
         if lookback <= 1:
