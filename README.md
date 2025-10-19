@@ -1,7 +1,5 @@
 # FINM32500 HW5 — Backtesting CI Lab
 
-[![CI](https://github.com/shenchingfeng/FINM32500-HW5-testing-CI/actions/workflows/ci.yml/badge.svg)](https://github.com/shenchingfeng/FINM32500-HW5-testing-CI/actions)
-
 ## Overview
 A minimal daily backtester built around synthetic data generation, a volatility breakout strategy, a simple broker, and an execution loop. The focus is deterministic unit testing, coverage, and CI automation.
 
